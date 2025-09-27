@@ -10,6 +10,7 @@ export interface LoginResponse {
   user: {
     id?: string;
     _id?: string;
+    name: string;
     email: string;
     age: number;
   };
@@ -22,6 +23,7 @@ export interface RegisterResponse {
   user?: {
     id?: string;
     _id?: string;
+    name: string;
     email: string;
     age: number;
   };
@@ -62,7 +64,7 @@ export class AuthService {
       );
   }
 
-  register(userData: { email: string; password: string; age: number }): Observable<RegisterResponse> {
+  register(userData: { name: string; email: string; password: string; age: number }): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.apiUrl}/register`, userData)
       .pipe(
         tap(response => {

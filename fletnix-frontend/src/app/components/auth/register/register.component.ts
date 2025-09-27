@@ -18,52 +18,55 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-    console.log('Register component loaded!');
-    // Initialize form in constructor
     this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      age: ['', [Validators.required, Validators.min(1), Validators.max(120)]]
+      age: ['', [Validators.required, Validators.min(13), Validators.max(120)]]
     });
   }
 
   ngOnInit(): void {
-    // Don't redirect if already authenticated - let them register anyway
-    console.log('Register component initialized');
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
   }
 
   onSubmit(): void {
-    console.log('Form submitted!');
     if (this.registerForm.valid) {
       this.loading = true;
       this.errorMessage = '';
 
-      const formData = {
-        ...this.registerForm.value,
-        age: parseInt(this.registerForm.value.age)
-      };
-
-      console.log('Sending registration data:', formData);
-
-      this.authService.register(formData).subscribe({
-        next: (response) => {
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (response: any) => {
           this.loading = false;
           console.log('Registration successful:', response);
-          alert('Registration successful! You can now login.');
-          this.router.navigate(['/login']);
+          
+          if (response.token) {
+            localStorage.setItem('token', response.token);
+            if (response.user) {
+              localStorage.setItem('user', JSON.stringify(response.user));
+            }
+            this.router.navigate(['/dashboard']);
+          }
         },
-        error: (error) => {
+        error: (error: any) => {
           this.loading = false;
           console.error('Registration error:', error);
           this.errorMessage = error.error?.message || 'Registration failed. Please try again.';
         }
       });
-    } else {
-      console.log('Form is invalid:', this.registerForm.errors);
     }
   }
 
-  get email() { return this.registerForm?.get('email'); }
-  get password() { return this.registerForm?.get('password'); }
-  get age() { return this.registerForm?.get('age'); }
+  goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  // Getter methods for form validation
+  get name() { return this.registerForm.get('name'); }
+  get email() { return this.registerForm.get('email'); }
+  get password() { return this.registerForm.get('password'); }
+  get age() { return this.registerForm.get('age'); }
 }

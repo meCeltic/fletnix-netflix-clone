@@ -18,7 +18,7 @@
           </button>
         </div>
         <div class="text-center bg-gray-800 bg-opacity-50 rounded-lg py-2">
-          <span class="text-gray-300 text-sm">Welcome, <span class="text-netflix-red font-semibold">{{ currentUser?.email }}</span></span>
+          <span class="text-gray-300 text-sm">Welcome, <span class="text-netflix-red font-semibold">{{ currentUser?.name || currentUser?.email }}</span></span>
           <div class="text-gray-400 text-xs mt-1">
             <i class="fas fa-user mr-1"></i>Age: {{ currentUser?.age }}
           </div>
@@ -34,7 +34,7 @@
         </h1>
         <div class="flex items-center space-x-6">
           <div class="text-right">
-            <div class="text-gray-300">Welcome, <span class="text-netflix-red font-semibold">{{ currentUser?.email }}</span></div>
+            <div class="text-gray-300">Welcome, <span class="text-netflix-red font-semibold">{{ currentUser?.name || currentUser?.email }}</span></div>
             <div class="text-sm text-gray-400">
               <i class="fas fa-user mr-1"></i>Age: {{ currentUser?.age }}
             </div>
