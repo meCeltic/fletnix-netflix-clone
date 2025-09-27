@@ -29,9 +29,9 @@ A full-stack Netflix clone built with Angular, Node.js, and MongoDB. Features us
 - Beautiful hover effects and transitions
 
 ### 🧪 Quality Assurance
-- **Unit tests** with Jasmine/Karma (13/13 passing)
-- **E2E tests** with Playwright (9/11 passing)
-- **69.69% code coverage**
+- **Unit tests** with Jasmine/Karma
+- **E2E tests** with Playwright
+- **Good code coverage**
 - Production-ready error handling
 
 ## 🛠️ Tech Stack
@@ -65,36 +65,48 @@ A full-stack Netflix clone built with Angular, Node.js, and MongoDB. Features us
 ### Installation
 
 1. **Clone the repository**
-git clone https://github.com/YOUR_USERNAME/fletnix-netflix-clone.git
-cd fletnix-netflix-clone
-
+   ```bash
+   git clone https://github.com/meCeltic/fletnix-netflix-clone.git
+   cd fletnix-netflix-clone
+   ```
 
 2. **Backend Setup**
-cd fletnix-backend
-npm install
+   ```bash
+   cd fletnix-backend
+   npm install
+   ```
+   
+   Create `.env` file:
+   ```env
+   PORT=5000
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_super_secret_jwt_key
+   ```
+   
+   Import Netflix data:
+   ```bash
+   node scripts/importNetflixData.js
+   ```
+   
+   Start backend:
+   ```bash
+   npm run dev
+   ```
 
+3. **Frontend Setup**
+   ```bash
+   cd ../fletnix-frontend
+   npm install
+   ```
+   
+   Start frontend:
+   ```bash
+   ng serve
+   ```
 
-Create `.env` file:
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_super_secret_jwt_key
-
-Import Netflix data
-node scripts/importNetflixData.js
-
-Start backend
-npm run dev
-
-1. **Frontend Setup**
-cd ../fletnix-frontend
-npm install
-
-Start frontend
-ng serve
-
-1. **Access the app**
-- Frontend: http://localhost:4200
-- Backend API: http://localhost:5000
+4. **Access the app**
+   - Frontend: http://localhost:4200
+   - Backend API: http://localhost:5000
 
 ## 📊 Project Structure
 
@@ -138,16 +150,20 @@ fletnix-netflix-clone/
 ## 🧪 Testing
 
 ### Run Unit Tests
+```bash
 cd fletnix-frontend
 npm test
-
+```
 
 ### Run E2E Tests
+```bash
 npm run e2e
-
+```
 
 ### View Coverage Report
+```bash
 npm run test:coverage
+```
 
 ## 📈 Performance
 
@@ -208,7 +224,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Ankit Singh**
-- GitHub: [@ankitsingh](https://github.com/YOUR_USERNAME)
+- GitHub: [@meCeltic](https://github.com/meCeltic)
 - Email: ankit.singh.work2024@gmail.com
 
 ## 🎯 Assignment Achievement
