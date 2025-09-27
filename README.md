@@ -68,39 +68,31 @@ A full-stack Netflix clone built with Angular, Node.js, and MongoDB. Features us
 git clone https://github.com/YOUR_USERNAME/fletnix-netflix-clone.git
 cd fletnix-netflix-clone
 
-text
 
 2. **Backend Setup**
 cd fletnix-backend
 npm install
 
-text
 
 Create `.env` file:
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_super_secret_jwt_key
 
-text
-undefined
 Import Netflix data
 node scripts/importNetflixData.js
 
 Start backend
 npm run dev
 
-text
-
-3. **Frontend Setup**
+1. **Frontend Setup**
 cd ../fletnix-frontend
 npm install
 
 Start frontend
 ng serve
 
-text
-
-4. **Access the app**
+1. **Access the app**
 - Frontend: http://localhost:4200
 - Backend API: http://localhost:5000
 
@@ -121,8 +113,6 @@ fletnix-netflix-clone/
 │ │ └── interceptors/ # HTTP interceptors
 │ └── tests/ # E2E tests
 └── README.md
-
-text
 
 ## 🎯 Key Features Demo
 
@@ -151,17 +141,13 @@ text
 cd fletnix-frontend
 npm test
 
-text
 
 ### Run E2E Tests
 npm run e2e
 
-text
 
 ### View Coverage Report
 npm run test:coverage
-
-text
 
 ## 📈 Performance
 
@@ -227,17 +213,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🎯 Assignment Achievement
 
-**Score: 95-100/100 points**
+**Benchmarks**
 
-✅ Authentication (15/15)  
-✅ Backend Development (20/20)  
-✅ Frontend Development (15/15)  
-✅ Paginated List (10/10)  
-✅ Search Functionality (10/10)  
-✅ Age Restriction (10/10)  
-✅ Type Filtering (15/15)  
-✅ Detail Pages (10/10)  
-✅ Testing Suite (5/5)  
+✅ Authentication  
+✅ Backend Development
+✅ Frontend Development
+✅ Paginated List
+✅ Search Functionality
+✅ Age Restriction
+✅ Type Filtering
+✅ Detail Pages
+✅ Testing Suite 
 
 ---
 
