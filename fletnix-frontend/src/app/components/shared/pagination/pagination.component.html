@@ -1,0 +1,84 @@
+<div class="bg-gray-900 rounded-lg p-4" *ngIf="totalPages > 1">
+    <!-- Mobile Pagination -->
+    <div class="md:hidden">
+      <div class="flex items-center justify-between mb-4">
+        <div class="text-sm text-gray-400">
+          {{ startItem }}-{{ endItem }} of {{ totalItems }}
+        </div>
+        <div class="text-sm text-gray-400">
+          Page {{ currentPage }} of {{ totalPages }}
+        </div>
+      </div>
+      
+      <div class="flex justify-center space-x-2">
+        <button
+          (click)="onPreviousClick()"
+          [disabled]="currentPage <= 1 || loading"
+          class="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+        >
+          Previous
+        </button>
+        <button
+          (click)="onNextClick()"
+          [disabled]="currentPage >= totalPages || loading"
+          class="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  
+    <!-- Desktop Pagination -->
+    <div class="hidden md:block">
+      <div class="flex items-center justify-between">
+        <!-- Items Info -->
+        <div class="text-sm text-gray-400">
+          Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} results
+        </div>
+  
+        <!-- Page Numbers -->
+        <div class="flex items-center space-x-1">
+          <!-- Previous Button -->
+          <button
+            (click)="onPreviousClick()"
+            [disabled]="currentPage <= 1 || loading"
+            class="px-3 py-2 text-sm bg-gray-700 text-white rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            Previous
+          </button>
+  
+          <!-- Page Numbers -->
+          <button
+            *ngFor="let page of pages"
+            (click)="onPageClick(page)"
+            [disabled]="loading"
+            [class]="page === currentPage ? 'bg-netflix-red text-white' : 'bg-gray-700 text-white hover:bg-gray-600'"
+            class="px-3 py-2 text-sm rounded transition-colors disabled:cursor-not-allowed"
+          >
+            {{ page }}
+          </button>
+  
+          <!-- Next Button -->
+          <button
+            (click)="onNextClick()"
+            [disabled]="currentPage >= totalPages || loading"
+            class="px-3 py-2 text-sm bg-gray-700 text-white rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Loading Indicator -->
+    <div *ngIf="loading" class="mt-4 text-center">
+      <div class="inline-flex items-center text-gray-400">
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Loading...
+      </div>
+    </div>
+  </div>
+  

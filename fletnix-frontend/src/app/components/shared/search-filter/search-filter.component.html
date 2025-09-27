@@ -1,0 +1,95 @@
+<div class="bg-gray-900 rounded-lg p-6 mb-6">
+    <form [formGroup]="searchForm" class="space-y-4">
+      <!-- Search and Type Filter Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Search -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Search Content
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              formControlName="search"
+              placeholder="Search by title, cast, or description..."
+              class="netflix-input w-full pl-10"
+            >
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Type Filter -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Content Type
+          </label>
+          <select formControlName="type" class="netflix-input w-full">
+            <option value="">All Content</option>
+            <option value="Movie">Movies Only</option>
+            <option value="TV Show">TV Shows Only</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Sort Options Row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Sort By -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Sort By
+          </label>
+          <select formControlName="sortBy" class="netflix-input w-full">
+            <option value="title">Title</option>
+            <option value="release_year">Release Year</option>
+            <option value="type">Content Type</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+  
+        <!-- Sort Order -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">
+            Sort Order
+          </label>
+          <select formControlName="sortOrder" class="netflix-input w-full">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+  
+        <!-- Clear Filters -->
+        <div class="flex items-end">
+          <button
+            type="button"
+            (click)="clearFilters()"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors duration-200 w-full"
+          >
+            Clear Filters
+          </button>
+        </div>
+      </div>
+  
+      <!-- Results Info -->
+      <div class="flex items-center justify-between pt-4 border-t border-gray-700">
+        <div class="text-sm text-gray-400">
+          <span *ngIf="!loading">{{ totalItems }} items found</span>
+          <span *ngIf="loading" class="flex items-center">
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Loading...
+          </span>
+        </div>
+        
+        <div class="text-xs text-gray-500">
+          Use filters to narrow down your search
+        </div>
+      </div>
+    </form>
+  </div>
+  

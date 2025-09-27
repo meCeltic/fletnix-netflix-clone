@@ -1,0 +1,14 @@
+.netflix-input:focus {
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.5);
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  

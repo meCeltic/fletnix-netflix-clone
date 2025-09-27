@@ -1,0 +1,84 @@
+<div class="min-h-screen netflix-theme flex items-center justify-center px-4">
+    <div class="max-w-md w-full space-y-8">
+      <!-- Logo -->
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-netflix-red mb-2">FletNix</h1>
+        <p class="text-gray-400">Sign in to your account</p>
+      </div>
+  
+      <!-- Login Form -->
+      <div class="bg-gray-900 rounded-lg shadow-xl p-8">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="netflix-input w-full"
+              placeholder="Enter your email"
+              [class.border-red-500]="email?.invalid && (email?.dirty || email?.touched)"
+            >
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="email?.errors?.['required']">Email is required</div>
+              <div *ngIf="email?.errors?.['email']">Please enter a valid email</div>
+            </div>
+          </div>
+  
+          <!-- Password -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              class="netflix-input w-full"
+              placeholder="Enter your password"
+              [class.border-red-500]="password?.invalid && (password?.dirty || password?.touched)"
+            >
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="password?.errors?.['required']">Password is required</div>
+              <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</div>
+            </div>
+          </div>
+  
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="bg-red-600 text-white p-3 rounded text-sm">
+            {{ errorMessage }}
+          </div>
+  
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            [disabled]="!loginForm.valid || loading"
+            class="netflix-button w-full py-3 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span *ngIf="!loading">Sign In</span>
+            <span *ngIf="loading" class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Signing In...
+            </span>
+          </button>
+        </form>
+  
+        <!-- Register Link -->
+        <div class="mt-6 text-center">
+          <p class="text-gray-400">
+            Don't have an account?
+            <a routerLink="/register" class="text-netflix-red hover:text-red-400 font-semibold ml-1">
+              Sign up here
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

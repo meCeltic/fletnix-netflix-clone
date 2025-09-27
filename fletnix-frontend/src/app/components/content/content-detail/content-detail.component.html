@@ -1,0 +1,128 @@
+<div class="min-h-screen bg-black text-white">
+  <!-- Header -->
+  <header class="bg-gray-900 border-b border-gray-800 p-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <button 
+          (click)="goBack()"
+          class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors">
+          ← Back to Dashboard
+        </button>
+        <h1 class="text-3xl font-bold text-netflix-red">FletNix</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-300">{{ currentUser?.email }}</span>
+        <button 
+          (click)="logout()" 
+          class="bg-netflix-red text-white px-4 py-2 rounded hover:bg-red-700">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto p-6">
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-12">
+      <div class="text-xl">Loading content details...</div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error && !loading" class="text-center py-12">
+      <div class="text-red-500 text-xl mb-4">{{ error }}</div>
+      <button 
+        (click)="goBack()" 
+        class="bg-netflix-red text-white px-6 py-2 rounded hover:bg-red-700">
+        Go Back to Dashboard
+      </button>
+    </div>
+
+    <!-- Content Details -->
+    <div *ngIf="content && !loading && !error" class="bg-gray-900 rounded-lg overflow-hidden">
+      <!-- Header Section -->
+      <div class="bg-gradient-to-r from-netflix-red to-red-800 p-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">{{ content.title }}</h1>
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+              <span class="bg-black bg-opacity-50 px-3 py-1 rounded">{{ content.type }}</span>
+              <span class="bg-black bg-opacity-50 px-3 py-1 rounded">{{ content.release_year }}</span>
+              <span class="bg-black bg-opacity-50 px-3 py-1 rounded font-semibold">{{ content.rating }}</span>
+              <span class="bg-black bg-opacity-50 px-3 py-1 rounded">{{ content.duration }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Body -->
+      <div class="p-6 space-y-6">
+        <!-- Description -->
+        <div>
+          <h2 class="text-xl font-semibold mb-3 text-netflix-red">Synopsis</h2>
+          <p class="text-gray-300 leading-relaxed">{{ content.description }}</p>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Cast & Crew -->
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-netflix-red">Cast & Crew</h3>
+            <div class="space-y-2">
+              <div>
+                <span class="text-gray-400 font-medium">Director:</span>
+                <span class="ml-2 text-white">{{ content.director || 'Not specified' }}</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium">Cast:</span>
+                <p class="ml-2 text-white text-sm leading-relaxed">{{ content.cast || 'Not specified' }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Production Details -->
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-netflix-red">Production Details</h3>
+            <div class="space-y-2">
+              <div>
+                <span class="text-gray-400 font-medium">Country:</span>
+                <span class="ml-2 text-white">{{ content.country || 'Not specified' }}</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium">Date Added:</span>
+                <span class="ml-2 text-white">{{ content.date_added || 'Not specified' }}</span>
+              </div>
+              <div>
+                <span class="text-gray-400 font-medium">Duration:</span>
+                <span class="ml-2 text-white">{{ content.duration }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Genres -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-netflix-red">Genres</h3>
+          <div class="flex flex-wrap gap-2">
+            <span 
+              *ngFor="let genre of content.listed_in.split(',')" 
+              class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">
+              {{ genre.trim() }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 pt-4">
+          <button 
+            (click)="goBack()"
+            class="bg-netflix-red hover:bg-red-700 text-white px-6 py-3 rounded font-semibold transition-colors">
+            Back to Browse
+          </button>
+          <button class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded font-semibold transition-colors">
+            Add to Watchlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
